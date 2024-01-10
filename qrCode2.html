@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.2/dist/qrcode.min.js"></script>
+</head>
+<body>
+  <div id="qrcode"></div>
+
+  <script>
+    // Função para obter parâmetros da URL
+    function obterParametroUrl(nomeParametro) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(nomeParametro);
+    }
+
+    // Obtém o texto da URL
+    const texto = obterParametroUrl('meu_texto');
+
+    // Verifica se o texto não é nulo e cria o QR Code
+    if (texto !== null) {
+      const qrcode = new QRCode(document.getElementById('qrcode'), {
+        text: texto,
+        width: 300,
+        height: 300
+      });
+    } else {
+      document.getElementById('qrcode').innerHTML = 'Nenhum texto fornecido para gerar o QR Code.';
+    }
+  </script>
+</body>
+</html>
